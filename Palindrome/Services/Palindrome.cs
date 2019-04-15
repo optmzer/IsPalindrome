@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Polindrome.Services
 {
@@ -12,7 +14,18 @@ namespace Polindrome.Services
          */ 
         public bool IsPalindrome(string Word)
         {
-            string toTest = Word.Replace(" ", "").ToLower();
+            //Only match Text and numbers [a-zA-Z0-9]
+            MatchCollection match = Regex.Matches(Word.ToLower(), "[a-zA-Z0-9]");
+            StringBuilder sb = new StringBuilder();
+
+            //Then rebuild matches in a string
+            foreach (var item in match)
+            {
+                sb.Append(item);
+            }
+            //string toTest = Word.Replace(" ", "").ToLower();
+            string toTest = sb.ToString();
+
 
             bool isPalindrome = true;
            
