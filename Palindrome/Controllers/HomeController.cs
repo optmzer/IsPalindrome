@@ -27,7 +27,12 @@ namespace Polindrome.Controllers
         [HttpPost]
         public IActionResult Index([FromForm] IndexModel model)
         {
-            var palindrome = _palindrome.IsPalindrome(model.Word);
+            var palindrome = false;
+
+            if (ModelState.IsValid)
+            {
+                palindrome = _palindrome.IsPalindrome(model.Word);
+            }
 
             var data = new IndexModel
             {
